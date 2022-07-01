@@ -2,7 +2,7 @@ var exchangeratecollector = require('./exchangeratecollector');
 var rateresponseformatter = require('./rateresponseformatter');
 var messageproducer = require("./rateskafkaproducer")
 
-async function firstFunction() {
+async function collectAndPublish() {
     var currencies = await exchangeratecollector.getRates();
     var availableRates = await rateresponseformatter.extract(currencies);
     console.log(availableRates);
@@ -12,4 +12,6 @@ async function firstFunction() {
     })
 }
 
-firstFunction();
+exports.collectAndPublish = collectAndPublish;
+
+collectAndPublish();

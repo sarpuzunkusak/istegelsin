@@ -12,6 +12,7 @@ async function produce(message) {
 
         try {
             producer.connect().then(() => {
+                console.log("producer connected.");
                 producer.send({
                     topic,
                     messages: [
@@ -20,11 +21,13 @@ async function produce(message) {
                         },
                     ],
                 }).then(() => {
-                    producer.disconnect()
+                    console.log("message sent.");
+                    producer.disconnect().then(() => {
+                        console.log("producer disconnected.");
+                        resolve(true);
+                    });
                 });
             });
-            console.log("message sent.");
-            resolve(true);
         } catch (err) {
             console.error("could not write message " + err)
             reject(new Error("could not write message " + err));
