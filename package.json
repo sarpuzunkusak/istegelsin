@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "axios": "^0.27.2",
+    "https": "^1.0.0",
+    "kafkajs": "^2.1.0",
+    "xml-js": "^1.6.11"
+  }
+}
